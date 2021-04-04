@@ -2,17 +2,17 @@
 # coding: utf-8
 
 
-from Mortgage_Package.mortgages.mortgage_estimator import *
+from Mortgage_Package.mortgage_base import *
 
 import unittest
 
-class Test_mortgage_estimator_base_functions(unittest.TestCase):
+class Test_base_functions(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
         ## Import dependencies
         import warnings, pandas as pd, numpy as np
-        print('!!! Class setup for Test(mortgage_estimator_base_functions) !!!')
+        print('!!! Class setup for Test(Test_base_functions) !!!')
     
     
     def setUp(self):
@@ -74,7 +74,7 @@ class Test_mortgage_estimator_base_functions(unittest.TestCase):
         
     @classmethod
     def tearDownClass(cls):
-        print('!!! Class teardown for Test(mortgage_estimator_base_functions) !!!\n\n\n')
+        print('!!! Class teardown for Test(Test_base_functions) !!!\n\n\n')
 
 
 #unittest.main(argv=[''], verbosity=2, exit=False)

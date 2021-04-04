@@ -2,17 +2,17 @@
 # coding: utf-8
 
 
-from Mortgage_Package.mortgages.mortgage_estimator import *
+from Mortgage_Package.mortgage_base import *
 
 import unittest
 
-class Test_mortgage_estimator_propertyfilter(unittest.TestCase):
+class Test_filter(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
         ## Import dependencies
         import warnings, pandas as pd, numpy as np
-        print('!!! Class setup for Test(mortgage_estimator_propertyfilter) !!!')
+        print('!!! Class setup for Test(Test_filter) !!!')
     
     def setUp(self):
         ## Import property dataset
@@ -91,7 +91,7 @@ class Test_mortgage_estimator_propertyfilter(unittest.TestCase):
         
     @classmethod
     def tearDownClass(cls):
-        print('!!! Class teardown for Test(mortgage_estimator_propertyfilter) !!!\n\n\n')
+        print('!!! Class teardown for Test(Test_filter) !!!\n\n\n')
 
 
 #unittest.main(argv=[''], verbosity=2, exit=False)

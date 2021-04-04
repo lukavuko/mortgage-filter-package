@@ -6,9 +6,9 @@ setup(
     version='0.1',
     packages=find_packages(include=['Mortgage_Package', 'Mortgage_Package.*']),
     license='MIT',
-    description='A package for mortgage planning and real estate affodability computation',
-    url='https://github.com/lukavuko/Lab4_Testing_II',
-    author='Tony Zhou and Luka Vukovic',
+    description='A package for filtering real estate opportunities based on your financial situation',
+    url='https://github.com/lukavuko/my-mortgage',
+    author='Luka Vukovic',
     author_email='luka.vuko@outlook.com'
 )
     
