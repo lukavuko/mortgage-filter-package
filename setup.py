@@ -7,7 +7,7 @@ setup(
     packages=find_packages(include=['Mortgage_Package', 'Mortgage_Package.*']),
     license='MIT',
     description='A package for filtering real estate opportunities based on your financial situation',
-    url='https://github.com/lukavuko/my-mortgage',
+    url='https://github.com/lukavuko/mortgage-filter-package',
     author='Luka Vukovic',
     author_email='luka.vuko@outlook.com'
 )
