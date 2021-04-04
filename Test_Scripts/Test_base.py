@@ -2,8 +2,10 @@
 # coding: utf-8
 
 
-from mortgage_package.mortgage_base import *
-from mortgage_package.exceptions import *
+from mortgage_package import mortgage_filter
+from mortgage_package import exceptions
+#from mortgage_package.mortgage_base import *
+#from mortgage_package.exceptions import *
 
 import unittest
 
