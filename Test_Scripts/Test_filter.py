@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
-from mortgage_package import mortgage_filter
-from mortgage_package import exceptions
-
-#from exceptions import *
+from mortgage_package.mortgage_filter import *
+from mortgage_package.exceptions import *
 
 import unittest
 
