@@ -1,130 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # BASE FUNCTIONS
+# ### Functions for: 
+# - minimum down payment
+# - mortgage rate by term
+# - mortgage insurance
+# - monthly payments
+# - optimal monthly payment
+# - total interest
+
 # In[1]:
 
 
 import warnings, pandas as pd, numpy as np
-from Mortgage_Package.mortgages.exceptions import *
-
-# In[4]:
+from mortgage_package.exceptions import *
 
 
-def property_filter(property_data, downpayment, mortgage_rate = None, mortgage_term = None, max_monthly_payment = None, max_loan = None):
-    ''' Returns a dataframe containing the properties/areas.
-        
-    Arguments
-    ----------
-    data : dataframe 
-        Areas/properties in column index 0 (str)
-        Respective prices in column index 1 (numeric) 
-        
-    downpayment : numeric
-        Your maximal downpayment
-    
-    mortgage_rate : numeric 
-        Interest rate on the mortgage loan (leave empty if mortgage_term is provided)
-    
-    mortgage_term : int 
-        Contract length in years (1 to 10) for the mortgage interest rate.
-        Only specify if you do not know what mortgage_rate to enter (leave empty if mortgage_rate provided)
-        
-    max_monthly_payment : numeric 
-        Your max affordable or bank limited monthly payment towards your home
-        
-    max_loan : numeric
-        Max eligible loan based on your downpayment
-
-    Return
-    ------
-    dataframe
-        Properties/Areas
-        Prices/Average area price
-        Minimum_Downpayment
-        Mortgage_Insurance
-        Principal
-        Monthly_Payment
-        Shortest_Amortization
-        Total_Interest
-        Net_Cost (assuming no other fees)
-        '''
-    
-    warnings.filterwarnings("ignore") 
-    
-    try:
-        # is object a dataframe?
-        if isinstance(property_data, pd.DataFrame) == False:
-            raise FilterInputError('Dataframe object expected')
-        # right number of columns?
-        if len(property_data.columns)!=2:
-            raise FormatError('Expected two columns of type str and numeric, respectively')
-        # is column at index 1 (price) numeric?
-        if pd.api.types.is_numeric_dtype(property_data.iloc[:,1]) == False:
-            raise TypeError('Column at index 1 (price) must be numeric')
-            
-    except FilterInputError as FIE:
-        print(FIE, '\nReveived object of type:', type(property_data))
-        return None
-    except FormatError as FE:
-        print(FE,'\nReveived dataframe with this many columns:', len(property_data.columns))
-        return None       
-    except TypeError as TE:
-        print(TE)
-        return None
-    
-    data = property_data.copy()
-    
-    # Rename columns
-    data.set_axis(['Property/Area', 'Price'], axis=1, inplace=True)
-    
-    # Note original input of properties
-    og_prop_count = data['Property/Area'].count()
-    
-    # FILTER: Downpayment. Remove properties where minimal DP exceeds your entered DP
-    data['Minimum_Downpayment'] = data.iloc[:, 1].apply(lambda x: min_downpayment(x))
-    data = data[data['Minimum_Downpayment'] <= downpayment]
-    
-    # Mortgage rate. If none provided give a reasonable estimate
-    if mortgage_rate == None:
-        mortgage_rate = mort_rate(mortgage_term)
-    
-    # Calculate mortgage insurance lump sum for each property
-    default_insurance = []
-    for price in data['Price']:
-        default_insurance +=  [mortgage_insurance(price, downpayment)]
-    data['Mortgage_Insurance'] = default_insurance
-    
-    # Calculate initial principal for each property by converting annual mortgage rate to a monthly rate
-    data['Principal'] = round((data['Price'] - downpayment + data['Mortgage_Insurance']), 2)
-    
-    # FILTER: Max eligible loan. Remove properties where the principal exceeds you max approved loan.
-    data = data[data['Principal'] < max_loan]
-    
-    # Add two columns for monthly payment and shortest amortization period
-    Monthly_Payment = []; Amortization = []
-    for princ in data['Principal']:
-        Monthly_Payment += [optimal_monthly_payment(princ, mortgage_rate, max_monthly_payment)[0]]
-        Amortization += [optimal_monthly_payment(princ, mortgage_rate, max_monthly_payment)[1]]
-    data['Monthly_Payment'] = Monthly_Payment
-    data['Shortest_Amortization'] = Amortization
-    
-    # FILTER: Remove rows where Monthly_Payment is null
-    data = data[data['Monthly_Payment'].notnull()]
-    
-    # Add column for the cumulative cost of interest given that amortization
-    tot_int = []
-    for princ, monthly_payment in data[['Principal', 'Monthly_Payment']].itertuples(index=False):
-        tot_int += [total_interest(princ, mortgage_rate, monthly_payment)]
-    data['Total_Interest'] = tot_int
-    
-    # Add column for net cost of home (price + cumulative interest + mortgage insurance)
-    data['Net_Cost'] = data['Price'] + data['Mortgage_Insurance'] + data['Total_Interest']
-    
-    print(f"You can afford {data['Property/Area'].count()} properties from the {og_prop_count} you've provided.")
-    return data
-
-
-# In[1]:
+# In[2]:
 
 
 def min_downpayment(price):
@@ -193,7 +86,7 @@ def mort_rate(term):
         
 
 
-# In[6]:
+# In[23]:
 
 
 def mortgage_insurance(price, downpayment):
@@ -242,43 +135,8 @@ def mortgage_insurance(price, downpayment):
         return None
     except ZeroDivisionError:
         print('Price cannot be zero.')
-        return None    
-
-
-# In[12]:
-
-
-def optimal_monthly_payment(principal, mortgage_rate, max_monthly_payment):
-    ''' Returns the first amortization period which has a monthly payment
-    less than your max_monthly_payment (ie. within budget). The shortest
-    possible amortization period has the lowest long term interest cost.
-
-    Arguments
-    ----------
-    principal : numeric
-    
-    mortgage_rate : float
-          Annual mortgage rate (loan interest)
-    
-    max_monthly_payment: numeric
-        Your max affordable monthly contribution
-    
-    Return
-    ------
-    list
-        mp: monthly payment for a given amortization
-        i: amortization period in years
-    '''
-    try:
-        for i in range(1, 26):
-            mp = monthly_payment(principal, mortgage_rate, i, months = False)
-            if mp <= max_monthly_payment:
-                return [mp, i]
-        return [np.nan, np.nan]
-    
-    except TypeError:
-        print('Bad entry type. Received:', type(principal), type(mortgage_rate), type(max_monthly_payment))
         return None
+        
 
 
 # In[14]:
@@ -316,6 +174,42 @@ def monthly_payment(principal, mortgage_rate, amortization, months = False):
     monthly_contribution = principal*((R**n)*(1-R) / (1-R**n))
     
     return round(monthly_contribution, 2)
+
+
+# In[12]:
+
+
+def optimal_monthly_payment(principal, mortgage_rate, max_monthly_payment):
+    ''' Returns the first amortization period which has a monthly payment
+    less than your max_monthly_payment (ie. within budget). The shortest
+    possible amortization period has the lowest long term interest cost.
+
+    Arguments
+    ----------
+    principal : numeric
+    
+    mortgage_rate : float
+          Annual mortgage rate (loan interest)
+    
+    max_monthly_payment: numeric
+        Your max affordable monthly contribution
+    
+    Return
+    ------
+    list
+        mp: monthly payment for a given amortization
+        i: amortization period in years
+    '''
+    try:
+        for i in range(1, 26):
+            mp = monthly_payment(principal, mortgage_rate, i, months = False)
+            if mp <= max_monthly_payment:
+                return [mp, i]
+        return [np.nan, np.nan]
+    
+    except TypeError:
+        print('Bad entry type. Received:', type(principal), type(mortgage_rate), type(max_monthly_payment))
+        return None
 
 
 # In[19]:

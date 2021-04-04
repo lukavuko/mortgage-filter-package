@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[3]:
 
 
 class mortgageError(Exception):
@@ -23,3 +23,4 @@ class TermError(mortgageError):
 class PovertyError(mortgageError):
     '''Raised when downpayment input value is too low to be legally considered'''
     pass
+
