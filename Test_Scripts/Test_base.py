@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from mortgage_package.mortgage_base import *
-from mortgage_package.exceptions import *
+from ..mortgage_package.mortgage_base import *
+from ..mortgage_package.exceptions import *
 
 import unittest
 
