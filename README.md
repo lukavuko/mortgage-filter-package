@@ -1,4 +1,4 @@
-![CI Tests](https://github.com/lukavuko/Lab4_Testing_II/workflows/CI%20Tests/badge.svg)
+![CI Tests](https://github.com/lukavuko/mortgage-filter-package/workflows/CI%20Tests/badge.svg)
 # Mass-Mortgage-Filtering-Package
 A Python package for processing real estate data frames that instantly yields an array of affordability information. Let's find our dream homes, enjoy!
 
