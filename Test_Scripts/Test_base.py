@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from ..mortgage_package.mortgage_base import *
-from ..mortgage_package.exceptions import *
+from mortgage_package.mortgage_base import *
+#from mortgage_package.exceptions import *
 
 import unittest
 
@@ -13,7 +13,6 @@ class Test_base_functions(unittest.TestCase):
         ## Import dependencies
         import warnings, pandas as pd, numpy as np
         print('!!! Class setup for Test(Test_base_functions) !!!')
-    
     
     def setUp(self):
         ## Test values
