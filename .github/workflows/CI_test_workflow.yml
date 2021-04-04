@@ -32,6 +32,6 @@ jobs:
         pip install pandas
         #pip install unittest
     
-    - name: Test with our test script
+    - name: Test with our test suite
       run:
-        python Test_Suite.py
+        python TEST_SUITE.py

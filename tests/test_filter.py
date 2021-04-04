@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from mortgage_package import *
+from mortgage_package.mortgage_filter import *
 #from mortgage_package.exceptions import *
 
 import unittest
@@ -16,7 +16,7 @@ class Test_filter(unittest.TestCase):
     
     def setUp(self):
         ## Import property dataset
-        self.df = pd.read_csv('vancouver_area_testing_set.csv', header = 0)
+        self.df = pd.read_csv('data/vancouver_area_testing_set.csv', header = 0)
         self.df = self.df.loc[:,['Area', 'House Price']]
         
         ## Prior knowns for 4 test sets for the property filter 

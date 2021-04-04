@@ -1,21 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import unittest
-
-
-# In[2]:
-from Test_base import *
-from Test_filter import *
-#from Test_Scripts.Test_base import *
-#from Test_Scripts.Test_filter import *
-
-
-# In[3]:
-
+from tests.test_base import *
+from tests.test_filter import *
 
 def my_suite():
     suite = unittest.TestSuite()
@@ -28,10 +16,3 @@ def my_suite():
     print(runner.run(suite))
 
 my_suite()
-
-
-# In[ ]:
-
-
-
-
