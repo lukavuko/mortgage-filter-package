@@ -10,4 +10,4 @@ A Python package for processing real estate data frames that instantly yields an
 - [x] Publish package (i.e., upload the package to PyPi) and add the link to the README file.
 
 ### Link to PyPi package:
-https://test.pypi.org/project/Mortgage-Package/
+https://test.pypi.org/project/mortgage-filter-package/
