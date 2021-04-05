@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from mortgage_package.mortgage_filter import *
+from mortgage_filter.mortgage_filter import *
 #from mortgage_package.exceptions import *
 
 import unittest
@@ -11,7 +11,8 @@ class Test_filter(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         ## Import dependencies
-        import warnings, pandas as pd, numpy as np
+        from pandas import read_csv
+        from numpy import linspace 
         print('!!! Class setup for Test(Test_filter) !!!')
     
     def setUp(self):

@@ -8,8 +8,8 @@
 
 
 import warnings, pandas as pd, numpy as np
-from mortgage_package.mortgage_base import *
-from mortgage_package.exceptions import *
+from mortgage_filter.mortgage_base import *
+from mortgage_filter.exceptions import *
 
 
 # In[4]:

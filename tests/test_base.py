@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from mortgage_package.mortgage_base import *
-#from mortgage_package.exceptions import *
+from mortgage_filter.mortgage_base import *
 
 import unittest
 
@@ -11,7 +10,7 @@ class Test_base_functions(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         ## Import dependencies
-        import warnings, pandas as pd, numpy as np
+        from numpy import nan, linspace
         print('!!! Class setup for Test(Test_base_functions) !!!')
     
     def setUp(self):
@@ -33,7 +32,7 @@ class Test_base_functions(unittest.TestCase):
             self.assertEqual(min_downpayment(self.price[i]), self.expected[i])   
         
     def test_mort_rate(self):
-        self.expected = [None, None, 1.668, 2.005, 3.018, None]
+        self.expected = [1.736, 1.672, 1.668, 2.005, 3.018, 3.686]
         for i in range(6):
             self.assertEqual(mort_rate(self.term[i]), self.expected[i])
         
@@ -43,14 +42,12 @@ class Test_base_functions(unittest.TestCase):
             self.assertEqual(mortgage_insurance(self.price[i], self.downpayment[i]), self.expected[i])
     
     def test_monthly_payment(self):
-
-        self.expected1 = [50706.96, 6929.26, 3823.27, 2802.68]
-        self.expected2 = [4854.89, 1417.11, 1308.94, 1300.73]
+        self.expected = [50706.96, 6929.26, 3823.27, 2802.68]
         for i in range(4):
             self.assertEqual(monthly_payment(self.principal, self.mortgage_rate, self.amortization_years[i], months = False),
-                             self.expected1[i])
+                             self.expected[i])
             self.assertEqual(monthly_payment(self.principal, self.mortgage_rate, self.amortization_months[i], months = True),
-                             self.expected2[i])
+                             self.expected[i])
         
     def test_optimal_monthly_payment(self):
         self.expected = [[np.nan, np.nan], [4536.83, 13], [7820.28, 7], [10674.89, 5]]
