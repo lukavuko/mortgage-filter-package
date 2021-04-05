@@ -577,7 +577,7 @@ plt.show()
     Monthly contribution is insufficient to pay off the original Principal.
     
 
-![png](demo/output_16_1.png)
+![png](demo/output_16_1.svg)
  
 - Note that as the monthly payment increases, not only does cumulative interest decrease, but the amortization period decreases substantially but this isn't see in the plot above.
 - Lets just peek at how the amortization period decreases.
@@ -594,7 +594,7 @@ plt.savefig('output_18_1.svg', transparent = False, format = 'svg')
 plt.show()
 ```
     
-![png](demo/output_18_0.svg)
+![png](demo/output_18_1.svg)
 
 ```python
 # Question 4
