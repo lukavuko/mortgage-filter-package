@@ -25,6 +25,7 @@ This was otherwise a small side project I wanted to do to better understand the 
 
 ### To Do
 - [X] Add a demo
+- [ ] Use Sphinx for documentation building
 - [ ] Add an ML component for predicting true property valuation to compare with current market value
 - [ ] Add relevant visualization wrappers (ie. property overlay on maps)
 - [ ] Add an API for pulling listed property information from the web
