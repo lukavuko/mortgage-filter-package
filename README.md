@@ -1,17 +1,21 @@
 ![CI Tests](https://github.com/lukavuko/mortgage-filter-package/workflows/CI%20Tests/badge.svg)
 
-# Mortgage-Filter-Package
-A Python package for processing real estate data frames that instantly yields an array of affordability information. Let's find our dream homes, enjoy!
+# The Mortgage-Filter-Package
+A Python package for processing real estate data frames that instantly yields an array of affordability information. Let's find our dream homes, enjoy and thanks for stopping by! :confetti_ball::balloon::confetti_ball::balloon:
 
 ### Links
-[to Pypi](https://pypi.org/project/mortgage-filter-lukavuko/)
-[to Source](https://github.com/lukavuko/mortgage-filter-package
+* [to Pypi](https://pypi.org/project/mortgage-filter-lukavuko/)
+* [to Source](https://github.com/lukavuko/mortgage-filter-package)
+* [to Demo](#How-to-use-the-Mortgage-Filter)
+* [to Demo *notebook*](https://github.com/lukavuko/mortgage-filter-package/blob/main/demo/Demo.md)
+* [to Final Notes](#final-notes)
+* [to Documentation](#how-to-access-documentation)
 
 ### Requirements
 - python >=3.7
 - pandas
 - numpy
-- 
+
 ### Installation
 `$ pip install mortgage-filter-lukavuko`
 
@@ -22,19 +26,24 @@ The package is designed to filter property dataframes to yield the affordable on
 
 This was otherwise a small side project I wanted to do to better understand the home buying process and all the associated costs. I'm quite happy with the tool and hopefully more functionalies will be added in time!
 
-# How to use the Mortgage Filter
+# [How to use the Mortgage Filter](#How-to-use-the-Mortgage-Filter)
+
 ***
+
 Lets start by importing the package and any associated packages.
+
 ```python
 from mortgage_filter import *
 
 import pandas as pd, numpy as np, matplotlib.pyplot as plt
 ```
+
 ### Demo Data: Average housing prices by area in and around Vancouver, British Columbia
 - Data Structure:
     - The mortgage filter is currently designed to work on dataframes with two columns.
     - One column for the property/area
     - A second column for the price
+
 ```python
 properties = pd.read_csv('data/vancouver_area_testing_set.csv', usecols = [0,1])
 properties.head()
@@ -85,6 +94,7 @@ properties.head()
     - downpayment of **\$190,000**
     - monthly payments of **\$4,800**|
     - mortgage rate?
+
 Since we may not know have a reasonable guess, let's specify a term length.
 
 *The interest rate typically depends on how long the term lasts with the bank.*
@@ -102,7 +112,6 @@ property_filter(property_data = properties,
     Terms must range from 1 to 10 years, but calculation will be performed anyway.
     You can afford 5 properties from the 25 you've provided.
     
-
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -185,6 +194,7 @@ property_filter(property_data = properties,
 </div>
 
 ### We're left with what?
+
 - We're left with all the affordable home indexes as well as:
     - the listed prices
     - the minimum downpayment (5% of value)
@@ -219,7 +229,7 @@ plt.show()
     Lengths greater than 10 years are not typically available. 
     Terms must range from 1 to 10 years, but calculation will be performed anyway.
     
-![png](output_7_1.png)
+![png](demo/output_7_1.png)
 
 ### Okay, now lets try using a mortgage rate of our own, say 2.8%.
 
@@ -315,6 +325,7 @@ property_filter(property_data = properties,
 </div>
 
 ### Notice how the last 4 columns have lower costs now.
+
 - Lets try one more time with a high downpayment/low monthly payment scenario.
 - Lets also assume a loan limit of **\$600,000** and **\$700,000** to see how this might affect a buying decision.
 
@@ -328,10 +339,6 @@ property_filter(property_data = properties,
 
     You can afford 12 properties from the 25 you've provided.
     
-
-
-
-
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -423,9 +430,6 @@ property_filter(property_data = properties,
 
     You can afford 14 properties from the 25 you've provided.
     
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -547,7 +551,7 @@ plt.show()
     Monthly contribution is insufficient to pay off the original Principal.
     
 
-![png](output_15_1.png)
+![png](demo/output_15_1.png)
 
 ```python
 # Question 2
@@ -565,7 +569,7 @@ plt.show()
     Monthly contribution is insufficient to pay off the original Principal.
     
 
-![png](output_16_1.png)
+![png](demo/output_16_1.png)
  
 - Note that as the monthly payment increases, not only does cumulative interest decrease, but the amortization period decreases substantially but this isn't see in the plot above.
 - Lets just peek at how the amortization period decreases.
@@ -581,7 +585,7 @@ plt.xlabel('Max Monthly Payment'); plt.ylabel('Years to Pay Off'); plt.grid()
 plt.show()
 ```
     
-![png](output_18_0.png)
+![png](demo/output_18_0.png)
 
 ```python
 # Question 4
@@ -612,17 +616,16 @@ plt.show()
     Input value is too low to be legally considered.
     
 
-![png](output_20_1.png)
+![png](demo/output_20_1.png)
     
  - Notice how a message prints for downpayments less than 5% the property value (minimal downpayment).
  - Also notice how at a downpayment of 20% mortgage insurance no longer applies.
  
 ***
-### Final Notes
+
+# Final Notes
 #### **I plan to continue adding features as time goes but for now I just wanted to understand and work with the fundamentals.**
 #### **If you have more questions or requests please reach out to me at my email, luka.vuko@outlook.com**
-
-    
 
 ### To Do
 - Use Sphinx for documentation building
