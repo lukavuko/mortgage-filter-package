@@ -16,7 +16,7 @@ This was otherwise a small side project I wanted to do to better understand the 
 ### Check out the demo:
 [Click Here](https://github.com/lukavuko/mortgage-filter-package/blob/main/Demo.ipynb)
 ### Link to PyPi package:
-[Pypi Link](https://test.pypi.org/project/mortgage-filter-lukavuko/)
+[Pypi Link](https://pypi.org/project/mortgage-filter-lukavuko/)
 
 ### To Do
 - Use Sphinx for documentation building
