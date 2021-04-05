@@ -1,4 +1,5 @@
 README.md
+pyproject.toml
 setup.py
 mortgage_filter_lukavuko.egg-info/PKG-INFO
 mortgage_filter_lukavuko.egg-info/SOURCES.txt
