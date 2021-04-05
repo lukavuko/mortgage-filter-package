@@ -7,14 +7,14 @@ A Python package for processing real estate data frames that instantly yields an
 - numpy
 ### Installation
 `$ pip install mortgage-filter-lukavuko`
+### Check out the demo:
+[Click Here](https://github.com/lukavuko/mortgage-filter-package/blob/main/Demo.ipynb)
 ### Motivation
 At some point in our live, we may consider buying a home. To do so, we'll sift through massive amounts of research and properties followed by calculating what's affordable and what isn't. How tedious. But wait... with the mortgage-filter-package, one can seamlessly filter through real estate opportunities based on one's financial circumstances.
 
 The package is designed to filter property dataframes to yield the affordable ones and information regarding their affordability (monthly payments to minimize cumulative interest, years to pay off, mortgage insurance, etc.). 
 
 This was otherwise a small side project I wanted to do to better understand the home buying process and all the associated costs. I'm quite happy with the tool and hopefully more functionalies will be added in time!
-### Check out the demo:
-[Click Here](https://github.com/lukavuko/mortgage-filter-package/blob/main/Demo.ipynb)
 ### Link to PyPi package:
 [Pypi Link](https://pypi.org/project/mortgage-filter-lukavuko/)
 

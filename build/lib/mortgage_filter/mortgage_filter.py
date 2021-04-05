@@ -7,7 +7,8 @@
 # In[1]:
 
 
-import warnings, pandas as pd, numpy as np
+from warnings import filterwarnings
+import pandas as pd
 from mortgage_filter.mortgage_base import *
 from mortgage_filter.exceptions import *
 
@@ -54,7 +55,7 @@ def property_filter(property_data, downpayment, mortgage_rate = None, mortgage_t
         Net_Cost (assuming no other fees)
         '''
     
-    warnings.filterwarnings("ignore") 
+    filterwarnings("ignore") 
     
     try:
         # is object a dataframe?

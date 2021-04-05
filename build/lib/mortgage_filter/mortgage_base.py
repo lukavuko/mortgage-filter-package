@@ -12,7 +12,7 @@
 
 # In[1]:
 
-import pandas as pd, numpy as np
+import numpy as np
 from mortgage_filter.exceptions import *
 
 
