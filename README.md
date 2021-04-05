@@ -26,7 +26,7 @@ The package is designed to filter property dataframes to yield the affordable on
 
 This was otherwise a small side project I wanted to do to better understand the home buying process and all the associated costs. I'm quite happy with the tool and hopefully more functionalies will be added in time!
 
-# [How to use the Mortgage Filter](#How-to-use-the-Mortgage-Filter)
+# How to use the Mortgage Filter
 
 ***
 
