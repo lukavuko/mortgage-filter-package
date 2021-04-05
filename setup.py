@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Mortgage Package',
+    name='mortgage-filter-lukavuko',
     version='0.3',
     packages=find_packages(include=['mortgage_package', 'mortgage_package.*']),
     license='MIT',
