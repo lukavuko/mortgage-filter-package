@@ -35,7 +35,11 @@ Lets start by importing the package and any associated packages.
 ```python
 from mortgage_filter import *
 
-import pandas as pd, numpy as np, matplotlib.pyplot as plt
+import pandas as pd, numpy as np
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+plt.style.use('default')
 ```
 
 ### Demo Data: Average housing prices by area in and around Vancouver, British Columbia
@@ -217,6 +221,8 @@ plt.plot(terms, rate)
 plt.xlabel('Terms'); plt.ylabel('Interest Rate as %')
 plt.axvline(x = 10, linestyle='--', color = 'black')
 plt.grid()
+
+plt.savefig('output_7_1.svg', transparent = False, format = 'svg')
 plt.show()
 ```
 
@@ -229,7 +235,7 @@ plt.show()
     Lengths greater than 10 years are not typically available. 
     Terms must range from 1 to 10 years, but calculation will be performed anyway.
     
-![png](demo/output_7_1.png)
+![png](demo/output_7_1.svg)
 
 ### Okay, now lets try using a mortgage rate of our own, say 2.8%.
 
@@ -544,6 +550,7 @@ plt.plot(rate, interest)
 plt.ticklabel_format(axis='y', style='plain')
 plt.xlabel('Interest Rate as %'); plt.ylabel('Cumulative Interest'); plt.grid()
 
+plt.savefig('output_15_1.svg', transparent = False, format = 'svg')
 plt.show()
 
 ```
@@ -551,7 +558,7 @@ plt.show()
     Monthly contribution is insufficient to pay off the original Principal.
     
 
-![png](demo/output_15_1.png)
+![png](demo/output_15_1.svg)
 
 ```python
 # Question 2
@@ -563,6 +570,7 @@ plt.plot(payments, interest)
 plt.ticklabel_format(axis='y', style='plain')
 plt.xlabel('Monthly Payment Amount'); plt.ylabel('Cumulative Interest'); plt.grid()
 
+plt.savefig('output_16_1.svg', transparent = False, format = 'svg')
 plt.show()
 ```
 
@@ -582,10 +590,11 @@ years = [optimal_monthly_payment(princ, mort_rate, max_monthly_payment = p)[1] f
 plt.plot(payments, years)
 plt.xlabel('Max Monthly Payment'); plt.ylabel('Years to Pay Off'); plt.grid()
 
+plt.savefig('output_18_1.svg', transparent = False, format = 'svg')
 plt.show()
 ```
     
-![png](demo/output_18_0.png)
+![png](demo/output_18_0.svg)
 
 ```python
 # Question 4
@@ -609,6 +618,7 @@ mort_ins = [mortgage_insurance(princ, d) for d in downpayment_size]
 plt.plot(downpayment_size, mort_ins)
 plt.xlabel('Downpayment on $500,000'); plt.ylabel('Mortgage Insurance'); plt.grid()
 
+plt.savefig('output_20_1.svg', transparent = False, format = 'svg')
 plt.show()
 ```
 
@@ -616,7 +626,7 @@ plt.show()
     Input value is too low to be legally considered.
     
 
-![png](demo/output_20_1.png)
+![png](demo/output_20_1.svg)
     
  - Notice how a message prints for downpayments less than 5% the property value (minimal downpayment).
  - Also notice how at a downpayment of 20% mortgage insurance no longer applies.
