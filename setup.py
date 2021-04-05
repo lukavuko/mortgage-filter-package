@@ -9,11 +9,12 @@ README = (HERE / "README.md").read_text()
 
 setuptools.setup(
     name='mortgage-filter-lukavuko',
-    version='0.3',
+    version='0.3.1',
     packages=setuptools.find_packages(exclude=['tests*']),
     license='MIT',
     description='A package for filtering real estate opportunities based on your financial situation',
     long_description=README,
+    long_description_content_type = 'text/markdown',
     url='https://github.com/lukavuko/mortgage-filter-package',
     author='Luka Vukovic',
     author_email='luka.vuko@outlook.com',

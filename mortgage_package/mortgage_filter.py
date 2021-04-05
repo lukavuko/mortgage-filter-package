@@ -89,32 +89,31 @@ def property_filter(property_data, downpayment, mortgage_rate = None, mortgage_t
     # FILTER: Downpayment. Remove properties where minimal DP exceeds your entered DP
     data['Minimum_Downpayment'] = data.iloc[:, 1].apply(lambda x: min_downpayment(x))
     data = data[data['Minimum_Downpayment'] <= downpayment]
-    
+        
     # Mortgage rate. If none provided give a reasonable estimate
     if mortgage_rate == None:
         mortgage_rate = mort_rate(mortgage_term)
     
-    # Calculate mortgage insurance lump sum for each property
-    default_insurance = []
-    for price in data['Price']:
-        default_insurance +=  [mortgage_insurance(price, downpayment)]
-    data['Mortgage_Insurance'] = default_insurance
-    
-    # Calculate initial principal for each property by converting annual mortgage rate to a monthly rate
+    # Calculate mortgage insurance (default insurance) lump sum for each property
+    data['Mortgage_Insurance'] = data.loc[:, 'Price'].apply(lambda p: mortgage_insurance(p, downpayment))
+                                                                
+    # Calculate initial principal for each property
     data['Principal'] = round((data['Price'] - downpayment + data['Mortgage_Insurance']), 2)
     
-    # FILTER: Max eligible loan. Remove properties where the principal exceeds you max approved loan.
-    data = data[data['Principal'] < max_loan]
+    # FILTER: Max eligible loan. Remove properties where the principal exceeds the max approved loan
+    # If no max loan specified assume no limit
+    if max_loan != None:
+        data = data[data['Principal'] < max_loan]
     
     # Add two columns for monthly payment and shortest amortization period
-    Monthly_Payment = []; Amortization = []
-    for princ in data['Principal']:
-        Monthly_Payment += [optimal_monthly_payment(princ, mortgage_rate, max_monthly_payment)[0]]
-        Amortization += [optimal_monthly_payment(princ, mortgage_rate, max_monthly_payment)[1]]
-    data['Monthly_Payment'] = Monthly_Payment
-    data['Shortest_Amortization'] = Amortization
+    # These are outputs of the optimal_monthly_payment function
+    temp = data.loc[:, 'Principal'].apply(lambda principal: optimal_monthly_payment(principal, mortgage_rate, max_monthly_payment))
+    temp = list(zip(*temp))
     
-    # FILTER: Remove rows where Monthly_Payment is null
+    data['Monthly_Payment'] = temp[0]
+    data['Shortest_Amortization'] =  temp[1]
+
+    # FILTER: Remove rows where Monthly_Payment is NaN
     data = data[data['Monthly_Payment'].notnull()]
     
     # Add column for the cumulative cost of interest given that amortization

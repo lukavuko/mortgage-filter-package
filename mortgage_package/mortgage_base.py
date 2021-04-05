@@ -12,8 +12,7 @@
 
 # In[1]:
 
-
-import warnings, pandas as pd, numpy as np
+import pandas as pd, numpy as np
 from mortgage_package.exceptions import *
 
 
@@ -70,19 +69,18 @@ def mort_rate(term):
         interest rate
     '''
     try:
-        if term < 1:
-            raise TermError
-        elif term > 10:
-            raise TermError('Lengths greater than 10 years are not typically available.')
-        elif isinstance(term, float):
-            print('Warning: Term lengths are typically in whole years not fractions of years.')
-        
         x = term
+        if x < 1:
+            raise TermError
+        elif x > 10:
+            raise TermError('Lengths greater than 10 years are not typically available.')
+        elif isinstance(x, float):
+            print('Warning: Term lengths are typically in whole years not fractions of years.')
         return round((0.0167*x**2 - 0.0337*x + 1.6851), 3)
     
     except TermError as TE:
-        print(f'{TE} Terms must range from (1,10) years.')
-        return None
+        print(f'{TE} \nTerms must range from 1 to 10 years, but calculation will be performed anyway.')
+        return round((0.0167*x**2 - 0.0337*x + 1.6851), 3)
         
 
 
@@ -169,9 +167,10 @@ def monthly_payment(principal, mortgage_rate, amortization, months = False):
     
     if months == True:
         n = amortization ## if specified in months, amortization = the number of payments 
-    n = amortization*12 ## convert amortization in years to the number of monthly payments
+    else:
+        n = amortization*12 ## convert amortization in years to the number of monthly payments
         
-    monthly_contribution = principal*((R**n)*(1-R) / (1-R**n))
+    monthly_contribution = principal * ((R**n)*(1-R)/(1-R**n))
     
     return round(monthly_contribution, 2)
 

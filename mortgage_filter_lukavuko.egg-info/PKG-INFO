@@ -1,6 +1,6 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: mortgage-filter-lukavuko
-Version: 0.3
+Version: 0.3.1
 Summary: A package for filtering real estate opportunities based on your financial situation
 Home-page: https://github.com/lukavuko/mortgage-filter-package
 Author: Luka Vukovic
@@ -27,3 +27,4 @@ Platform: UNKNOWN
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
