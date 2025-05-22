@@ -1,7 +1,9 @@
 ![CI Tests](https://github.com/lukavuko/mortgage-filter-package/workflows/CI%20Tests/badge.svg)
 
 # The Mortgage-Filter-Package
-A Python package for processing real estate data frames that instantly yields an array of affordability information. Let's find our dream homes, enjoy and thanks for stopping by! :confetti_ball::balloon::confetti_ball::balloon:
+> This was one of the very first things I've ever uploaded to github. It's not complicated. It's simply a first naive attempt at developing a basic Python package for processing real estate data which **instantly yields information on property affordability** (given you have a dataset available). 
+>
+> This project was inspired partially by my curiosity to see what it takes to be a homeowner in today's day and age. So, let us find our dream homes and thanks for stopping by! :confetti_ball::balloon::confetti_ball::balloon:
 
 ### Links
 * [to Pypi](https://pypi.org/project/mortgage-filter-lukavuko/)
